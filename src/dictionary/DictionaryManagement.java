@@ -139,7 +139,7 @@ public class DictionaryManagement{
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             writer.write("\n");
             writer.flush();
-            for( int i = 0; i < 5/*this.DictionaryData.size()*/; i++){
+            for( int i = 0; i < this.DictionaryData.size(); i++){
                 Word word = this.DictionaryData.get(i);
                 writer.write(word.getWord_target() + " " + word.getPronounce() + "\n" + word.getWord_explain() + "\n\n");
                 writer.flush();
