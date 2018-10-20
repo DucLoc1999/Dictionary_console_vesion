@@ -27,6 +27,7 @@ public final class Translate extends YandexTranslatorAPI {
    * @throws Exception on error.
    */
   public static String execute(final String text, final Language from, final Language to) throws Exception {
+    text.trim().toLowerCase();
     validateServiceState(text); //just check
     final String params = 
         PARAM_API_KEY + URLEncoder.encode(apiKey,ENCODING) 

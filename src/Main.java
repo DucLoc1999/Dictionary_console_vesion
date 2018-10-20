@@ -4,10 +4,10 @@ import dictionary.Word;
 import java.util.Scanner;
 import speechToTextAPI.CaptureVoice;
 import speechToTextAPI.SpeechRecognize;
-import textSpeech.TextToSpeech;
+import textToSpeech.TextToSpeech;
 import translateAPI.Language;
 import translateAPI.Translate;
-
+import imageToText.ImageToText;
 
 public class Main {
     public static DictionaryManagement dictionary = new DictionaryManagement();
@@ -23,7 +23,8 @@ public class Main {
         System.out.println("Type \"2\" to get text form voice and translate it (if you want).");
         System.out.println("Type \"3\" to translate word (or paragraph) form English to Vietnamese.");
         System.out.println("Type \"4\" to speech a word (or paragraph) in English.");
-        System.out.println("Type \"5\" to change data base.");
+        System.out.println("Type \"5\" to get text from image (.png only).");
+        System.out.println("Type \"6\" to change data base.");
         System.out.println("\n\tType \"#close#\" to close the dictionary program.\n");
     }
     
@@ -44,6 +45,8 @@ public class Main {
         } else if(input.compareTo("4") == 0){
             speech();
         } else if(input.compareTo("5") == 0){
+            imageToText();
+        } else if(input.compareTo("6") == 0){
             changeData();
         } else if(input.compareTo("#close#") == 0){
             running = false;
@@ -63,11 +66,11 @@ public class Main {
             dictionary.print(pos);
             myContinue();
         } else {
-            System.out.println("Can't find this word(or paragraph) in local data.\nWould you like to using translate option:");
+            System.out.println("Can't find this word(or paragraph) in local data.\nWould you like to translate it:");
             System.out.println("Enter \"1\" for YES other for NO");
-            if(scan.nextLine().compareTo("1") == 0){
+            if(scan.nextLine().compareTo("1") == 0)
                 translate(word);
-            }
+            
         }
     }
     
@@ -124,7 +127,23 @@ public class Main {
         TextToSpeech.speak(input);
     }
     
-    public static void changeData(){ // type 5
+    public static void imageToText(){ // type 5
+        System.out.println("Please enter path of image which you want to get text from: ");
+        String path = scan.nextLine();
+        String text = ImageToText.getText(path);
+        if(!text.equals("ready")){
+            System.out.println("The text in this image is: \n" + text + "\n");
+            System.out.println("Would you like to translate it.");
+            System.out.println("Enter \"1\" for YES other for NO");
+            if(scan.nextLine().compareTo("1") == 0)
+                translate(text);
+        } else {
+            System.out.println("Can't open this file.");
+            myContinue();
+        }
+    }
+
+    public static void changeData(){ // type 6
         System.out.println("Please enter word which you want to add, delete or change: ");
         String word = scan.nextLine().trim().toLowerCase(); 
         int pos = dictionary.findPosition(word);

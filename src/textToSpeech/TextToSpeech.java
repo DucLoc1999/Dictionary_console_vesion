@@ -1,4 +1,4 @@
-package textSpeech;
+package textToSpeech;
 
 import com.sun.speech.freetts.*;
 
