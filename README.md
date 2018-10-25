@@ -14,5 +14,5 @@ USING:
 - Using freeTTS libraries.
 - Using Tess4J program.
 
-#with Get text from image you have to download and run Tess4J program fist#
+>>>with get text from image you have to download and run Tess4J program fist
   you can do it with with this link http://chillyfacts.com/wp-content/uploads/2017/05/tesseract-ocr-setup-3.02.02.rar
